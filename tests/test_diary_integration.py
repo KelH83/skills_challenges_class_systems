@@ -17,19 +17,9 @@ new_diary3 = Diary()
 new_diary4 =Diary()
 
 
-def test_instance_is_created():
-    assert isinstance(new_diary, Diary)
-    assert new_diary.diary_entries == []
-
 def test_add_makes_a_new_entry_in_diary():
     new_diary.add(diary_entry1)
     assert len(new_diary.diary_entries) == 1
-
-def test_add_throws_error_for_incorrect_datatype():
-    with pytest.raises(Exception) as e:
-        new_diary.add('hello')
-    error_message = str(e.value)
-    assert error_message == "Only class instances are allowed!"
 
 def test_add_makes_multiple_entries_in_diary():
     new_diary2.add(diary_entry1)

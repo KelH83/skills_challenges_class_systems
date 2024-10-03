@@ -21,7 +21,8 @@ class Diary:
     def reading_time(self, wpm):
         if type(wpm) != int:
             raise Exception("Only integers are allowed!")
-        
+        if len(self.diary_entries) == 0:
+            return "Diary is empty"
         num_of_words = self.count_words()
         minutes = round(num_of_words/wpm)
         if minutes <1:
@@ -34,6 +35,8 @@ class Diary:
     def find_best_entry_for_reading_time(self, wpm, minutes):
         if type(wpm) != int or type(minutes) != int:
             raise Exception("Only integers are allowed!")
+        if len(self.diary_entries) == 0:
+            return "Diary is empty"
         for entry in self.diary_entries:
             if entry.count_words()/wpm == minutes:
                 return entry.contents
