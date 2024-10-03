@@ -1,7 +1,6 @@
 class LetterCounter:
     def __init__(self, text):
         self.text = text
-        print
 
     def calculate_most_common(self):
         counter = {}
