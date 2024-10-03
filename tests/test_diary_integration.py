@@ -14,6 +14,7 @@ diary_entry6 = DiaryEntry('Day 6', '250 words in total.A Duis vestibulum leo in 
 new_diary = Diary()
 new_diary2 = Diary()
 new_diary3 = Diary()
+new_diary4 =Diary()
 
 
 def test_instance_is_created():
@@ -49,6 +50,8 @@ def test_reading_time_returns_number_of_minutes_needed_to_read_entire_diary():
     assert new_diary2.reading_time(50) == "Less than a minute"
     new_diary2.add(diary_entry4)
     assert new_diary2.reading_time(50) == "4 minutes"
+    new_diary4.add(diary_entry5)
+    assert new_diary4.reading_time(50) == "1 minute"
 
 def test_reading_time_throws_error_for_incorrect_datatype():
     with pytest.raises(Exception) as e:
