@@ -1,29 +1,29 @@
+from lib.todo import *
+
 class TodoList:
     def __init__(self):
-        pass
+        self.todos = []
 
     def add(self, todo):
-        # Parameters:
-        #   todo: an instance of Todo
-        # Returns:
-        #   Nothing
-        # Side-effects:
-        #   Adds the todo to the list of todos
-        pass
+        if isinstance(todo, Todo):
+            self.todos.append(todo)
+        else:
+            raise Exception("Only instances of Todo allowed!")
 
     def incomplete(self):
-        # Returns:
-        #   A list of Todo instances representing the todos that are not complete
-        pass
+        incomplete_todos = []
+        for todo in self.todos:
+            if todo.complete == False:
+                incomplete_todos.append(todo.task)
+        return incomplete_todos
 
     def complete(self):
-        # Returns:
-        #   A list of Todo instances representing the todos that are complete
-        pass
+        complete_todos = []
+        for todo in self.todos:
+            if todo.complete == True:
+                complete_todos.append(todo.task)
+        return complete_todos
 
     def give_up(self):
-        # Returns:
-        #   Nothing
-        # Side-effects:
-        #   Marks all todos as complete
-        pass
+        for todo in self.todos:
+                todo.mark_complete()
