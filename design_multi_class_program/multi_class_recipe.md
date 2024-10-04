@@ -166,6 +166,14 @@ new_diary.add_to_diary(day_1)
 new_diary.add_to_diary(day_2)
 new_diary.read_whole_diary() # => ["Tues 2nd Oct: Did some coding", "Wed 3rd Oct":Met with an old friend"]
 
+def test_add_to_diary_updates_entries_list():
+    new_diary = Diary()
+    day_1 = DiaryEntry("Tues 2nd Oct", "Did some coding", Null)
+    day_2 = DiaryEntry("Wed 3rd Oct", "Met with an old friend", Null)
+    new_diary.add_to_diary(day_1)
+    new_diary.add_to_diary(day_2)
+    assert new_diary.read_whole_diary() ==["Tues 2nd Oct: Did some coding", "Wed 3rd Oct:Met with an old friend"]
+
 
 """
 Given a Diary
@@ -176,6 +184,11 @@ new_diary = Diary()
 day_3 = DiaryEntry("thur 4th Oct", "Met with old friend again, need to update her number", {'Kimiko':'012345678'})
 new_diary.add_to_diary(day_3)
 new_diary.read_contacts() # => [{'Kimiko':'012345678'}]
+
+def test_read_contacts_returns_a_list_of_all_contacts():
+    day_3 = DiaryEntry("thur 4th Oct", "Met with old friend again, need to update her number", {'Kimiko':'012345678'})
+    new_diary.add_to_diary(day_3)
+    assert new_diary.read_contacts() == [{'Kimiko':'012345678'}]
 
 """
 Given a Diary
@@ -188,6 +201,9 @@ day_2 = DiaryEntry("Wed 3rd Oct", "Met with an old friend", Null)
 new_diary.add_to_diary(day_1)
 new_diary.add_to_diary(day_2)
 new_diary.read_entries_with_timeframe(50, 1) # => Randomly selected - ["Wed 3rd Oct":Met with an old friend"]
+
+def test_read_entries_with_timeframe_returns_appropriate_entry():
+    assert new_diary.read_entries_with_timeframe(50, 1) == #Check how to assert for multiple options
 
 ```
 
@@ -208,6 +224,11 @@ new_diary.diary_entries # => []
 new_diary.tasks # => []
 new_diary.contacts # => []
 
+def test_creates_an_instance_of_Diary():
+    assert isinstance(new_diary, Diary)
+    assert new_diary.diary_entries == []
+    assert new_diary.tasks == []
+    assert new_diary.contacts == []
 
 """
 Given a Diary
@@ -219,17 +240,30 @@ new_diary.add_todo("walk dogs")
 new_diary.add_todo("feed cats")
 new_diary.read_todos() # => ["walk dogs", "feed cats"]
 
+def test_add_todo_updates_todo_list():
+    new_diary.add_todo("walk dogs")
+    new_diary.add_todo("feed cats")
+    assert new_diary.read_todos() == ["walk dogs", "feed cats"]
+
 
 """
 Given a DiaryEntry
 When we create the instance
-We see that the properties have been updated with thr given information
+We see that the properties have been updated with the given information
 """
 day_3 = DiaryEntry("Thur 4th Oct", "Met with old friend again, need to update her number", {'Kimiko':'012345678'})
 
 day_3.title # =>  "Thur 4th Oct"
 day_3.title # =>  "Met with old friend again, need to update her number"
 day_3.title # =>  {'Kimiko':'012345678'}
+
+def test_creates_an_instance_of_DiaryEntry():
+    day_3 = DiaryEntry("Thur 4th Oct", "Met with old friend again, need to update her number", {'Kimiko':'012345678'})
+
+    assert isinstance(day_3, DiaryEntry)
+    assert day_3.title ==  "Thur 4th Oct"
+    assert day_3.title == "Met with old friend again, need to update her number"
+    assert day_3.title ==  {'Kimiko':'012345678'}
 
 """
 Given a DiaryEntry
@@ -240,6 +274,9 @@ day_3 = DiaryEntry("Thur 4th Oct", "Met with old friend again, need to update he
 
 day_3.format() # =>  "Thur 4th Oct: Met with old friend again, need to update her number"
 
+def test_format_returns_formatted_version_of_diary_entry():
+    assert day_3.format() ==  "Thur 4th Oct: Met with old friend again, need to update her number"
+
 """
 Given a DiaryEntry
 When we call contacts
@@ -249,6 +286,10 @@ day_4 = DiaryEntry("Fri 5th Oct", "Met with Kiyomi and Kyoko, took down their nu
 
 day_4.contacts # =>  {'Kyomi':'109876543', 'Kyoko':'55512345'}
 
+def test_contacts_returns_the_dictionary_of_contacts():
+    day_4 = DiaryEntry("Fri 5th Oct", "Met with Kiyomi and Kyoko, took down their numbers", {'Kyomi':'109876543', 'Kyoko':'55512345'})
+
+    assert day_4.contacts ==  {'Kyomi':'109876543', 'Kyoko':'55512345'}
 
 ```
 
