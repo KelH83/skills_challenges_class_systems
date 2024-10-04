@@ -5,37 +5,29 @@ class Diary:
         self.contacts = []
 
     def add_to_diary(self, entry):
-        # Parameters:
-        #   entry : an instance of a diary entry
-        # Side-effects:
-        #   Adds the instance to the diary entries list
-        pass # No code here yet
+        self.diary_entries.append(entry)
+        self.contacts.append(entry.contacts)
 
     def add_todo(self, todo):
+        if type(todo) != str:
+            raise Exception("Only strings allowed for todo tasks!")
         self.tasks.append(todo)
 
-
     def read_whole_diary(self):
-        # Parameters:
-        #   none
-        # Returns:
-        #   A list of all of the diary entries
-        pass # No code here yet
+        formatted_list = []
+        for entry in self.diary_entries:
+            formatted_list.append(entry.format())
+        return formatted_list
 
     def read_entries_with_timeframe(self, wpm, minutes):
-        # Parameters:
-        #   wpm: the words per minute the user can read
-        #   minutes: the number of minutes the user has to read
-        # Returns:
-        #   A randomly selected diary entry that meets the criteria
-        pass # No code here yet
+        if type(wpm) != int or type(minutes) != int:
+            raise Exception("Only integers allowed for words per minute or minutes available!")
+        for entry in self.diary_entries:
+            if entry.count_words()/wpm == minutes:
+                return entry.format()
 
     def read_todos(self):
         return self.tasks
 
     def read_contacts(self):
-        # Parameters:
-        #   None
-        # Returns:
-        #   A list of all of the contacts
-        pass # No code here yet
+        return self.contacts
